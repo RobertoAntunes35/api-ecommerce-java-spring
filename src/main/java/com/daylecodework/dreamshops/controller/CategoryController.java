@@ -65,7 +65,7 @@ public class CategoryController {
     public ResponseEntity<ApiResponse> addCategory(@RequestBody Category category) {
         try {
             Category theCategory = categoryService.addCategory(category);
-            return ResponseEntity.ok(new ApiResponse("Success", theCategory));
+            return ResponseEntity.ok(new ApiResponse("success", theCategory));
         } catch (AlreadExistException ex) {
             return ResponseEntity.status(CONFLICT).body(new ApiResponse(ex.getMessage(), null));
         }

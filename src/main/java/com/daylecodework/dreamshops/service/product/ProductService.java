@@ -29,13 +29,13 @@ public class ProductService implements IProductService {
         // if yes, set it as the new product category
         // if no, the save it as a new category
         // the set as the new product category
-        Category category = Optional.ofNullable(categoryRepository.findByName(request.getCategory().getName()))
+        Category category = Optional.ofNullable(categoryRepository.findByName(request.getCategoryName()))
                 .orElseGet(() -> {
-                    Category newCategory = new Category(request.getCategory().getName());
+                    Category newCategory = new Category(request.getCategoryName());
                     return categoryRepository.save(newCategory);
                 });
 
-        request.setCategory(category);
+        request.setCategoryName(category.getName());
         return productRepository.save(createProduct(request, category));
     }
 
